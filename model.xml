@@ -1,0 +1,24 @@
+<mujoco>
+  <include file="{{ base_dir }}/scene.xml"/>
+  <option timestep="{{ time_step }}"/>
+  <default>
+    <geom contype="0" conaffinity="0"/>
+  </default>
+  <worldbody>
+    <!-- <light name="spotlight" mode="targetbodycom" target="pendulum" pos="0 0 {{ 2*motor_pos_z }}"/> -->
+    <body name="motor" pos="0 0 {{ motor_pos_z }}">
+      <geom name="motor_geom" type="cylinder" size="{{ motor_radius }} {{ motor_halfheight }}" pos="0 0 0"/>
+      <body name="arm" pos="0 0 0">
+        <joint name="arm_joint" type="hinge" axis="0 0 1" limited="false"/>
+        <geom type="capsule" fromto="0 0 0 {{ arm_length }} 0 0" size="{{ arm_radius }}"/>
+        <body name="pendulum" pos="{{ arm_length }} 0 0">
+          <joint name="pendulum_joint" type="hinge" axis="1 0 0" limited="false"/>
+          <geom type="capsule" fromto="0 0 0 0 {{ np.sin(alpha0)*pendulum_length }} {{ -np.cos(alpha0)*pendulum_length }}" size="{{pendulum_radius}}"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="arm_motor" joint="arm_joint" gear="1"/>
+  </actuator>
+</mujoco>
