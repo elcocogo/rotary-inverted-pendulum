@@ -32,6 +32,12 @@ uv run python sim.py --controller hybrid -v   # -v prints angle/velocity/torque 
 uv run python sim.py --help
 ```
 
+> **macOS:** the interactive viewer (`mujoco.viewer.launch_passive`) must run on the main thread of the OS's main application, which the regular `python` interpreter doesn't set up. Use `mjpython` instead of `python` — it ships with the `mujoco` package (installed at `.venv/bin/mjpython` by `uv sync`):
+> ```bash
+> uv run mjpython sim.py --controller swingup
+> ```
+> Otherwise the script fails with `RuntimeError: launch_passive requires that the Python script be run under mjpython on macOS`.
+
 A MuJoCo viewer window opens and the simulation runs in real time. Close the window to stop.
 
 ## Project structure
