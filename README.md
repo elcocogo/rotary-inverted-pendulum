@@ -16,18 +16,20 @@ Three control laws are implemented and selectable at runtime:
 
 ## Installation
 
+Dependencies are managed with [uv](https://docs.astral.sh/uv/). Install uv, then:
+
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -e .
+uv sync
 ```
+
+This creates a `.venv` and installs the exact dependency versions pinned in `uv.lock`.
 
 ## Usage
 
 ```bash
-python sim.py --controller swingup
-python sim.py --controller hybrid -v   # -v prints angle/velocity/torque at each step
-python sim.py --help
+uv run python sim.py --controller swingup
+uv run python sim.py --controller hybrid -v   # -v prints angle/velocity/torque at each step
+uv run python sim.py --help
 ```
 
 A MuJoCo viewer window opens and the simulation runs in real time. Close the window to stop.
@@ -40,7 +42,8 @@ A MuJoCo viewer window opens and the simulation runs in real time. Close the win
 ├── model.xml    # Jinja2-templated MJCF model (parameterized geometry)
 ├── scene.xml    # static MJCF scene (ground, lighting, etc.), included by model.xml
 ├── docs/        # background reading on rotary inverted pendulum dynamics and control
-└── pyproject.toml
+├── pyproject.toml
+└── uv.lock      # pinned dependency versions, keep in sync with pyproject.toml
 ```
 
 `model_rendered.xml` is generated at each run (the fully-substituted MJCF, for inspection) and is not meant to be edited or committed.
