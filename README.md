@@ -1,5 +1,7 @@
 # Rotary Inverted Pendulum
 
+![banner](images/banner.png)
+
 A MuJoCo simulation of a rotary inverted pendulum (Furuta pendulum): a motorized arm rotates in the horizontal plane and carries a free-swinging pendulum at its tip. The goal is to swing the pendulum up from a hanging position and balance it upright.
 
 The MJCF model is generated from a [Jinja2](https://jinja.palletsprojects.com/) template (`model.xml`), parameterized in Python, so geometry and physical constants live in one place.
