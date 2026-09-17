@@ -8,6 +8,8 @@ dependencies = [
     "mujoco>=3.0",
     "jinja2>=3.1",
     "numpy>=1.24",
+    "matplotlib>=3.10.9",
+    "scipy>=1.15.3",
 ]
 
 [build-system]
